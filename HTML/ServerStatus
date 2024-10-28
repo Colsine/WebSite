@@ -1,0 +1,115 @@
+<style>
+  @media only screen and (min-width: 1200px) {
+    .ui.container {
+      width: 77%;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .ui.card > .content > .header:not(.ui),
+    .ui.cards > .card > .content > .header:not(.ui) {
+      margin-top: 0.5em;
+    }
+  }
+  body {
+    content: " " !important;
+    background: fixed !important;
+    z-index: -1 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    background-position: top !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-image: url(https://img.colsine.com/i/2024/09/13/66e3e37d0c0d2.jpg) !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+ i.icon {
+    color: #000;
+  }
+  .ui.large.menu {
+    background-color: rgba(255, 255, 255, 55%);
+  }
+  .ui.dropdown .menu {
+    border: 0;
+    border-radius: 0px;
+    background-color: rgba(255, 255, 255, 55%);
+  }
+  .nezha-primary-btn {
+    background-color: #6ab7de !important;
+    color: #fff;
+  }
+  #app .ui.fluid.accordion {
+    background-color: #fbfbfb26;
+    border-radius: 0.4rem;
+  }
+  .ui.four.cards > .card {
+    border-radius: 0.6rem;
+    background-color: #fafafaa3;
+  }
+  .nezha-secondary-font {
+    color: #5faee3 !important;
+  }
+  .status.cards .ui.content.popup {
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 85%);
+  }
+  .ui.progress {
+    border-radius: 50rem;
+  }
+  .ui.progress .bar {
+    min-width: 1.8em !important;
+    border-radius: 15px;
+    line-height: 1.65em;
+  }
+  .ui.fine.progress > .bar {
+    background-color: #80bbe0 !important;
+  }
+  .ui.progress > .bar {
+    background-color: #000 !important;
+  }
+  .ui.progress.fine .bar {
+    background-color: #80bbe0 !important;
+  }
+  .ui.progress.warning .bar {
+    background-color: #64a7d1 !important;
+  }
+  .ui.progress.error .bar {
+    background-color: #55a0cf !important;
+  }
+  .ui.progress.offline .bar {
+    background-color: #cde6e1 !important;
+  }
+  i.arrow.alternate.circle.down.outline.icon {
+    color: #5faee3;
+  }
+  i.arrow.alternate.circle.up.outline.icon {
+    color: #5faee3;
+  }
+  .ui.inverted.segment,
+  .ui.primary.inverted.segment {
+    color: #000;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0%);
+  }
+</style>
+
+<script>
+  window.onload = function () {
+    var avatar = document.querySelector(".item img");
+    var footer = document.querySelector("div.is-size-7");
+    footer.innerHTML = " ";
+    footer.style.visibility = "visible";
+    avatar.src = "https://img.colsine.com/i/2024/09/13/66e3e8ab2c2dc.png";
+    avatar.style.visibility = "visible";
+  };
+  var faviconurl = "https://img.colsine.com/i/2024/09/13/66e3ea6e751e6.png";
+  var link =
+    document.querySelector("link[rel*='icon']") ||
+    document.createElement("link");
+  link.type = "image/x-icon";
+  link.rel = "shortcut icon";
+  link.href = faviconurl;
+  document.getElementsByTagName("head")[0].appendChild(link);
+</script>
+<script src="https://cdn.jsdelivr.net/gh/Colsine/WebSite/JavaScript/Sakura.js"></script>
