@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水印相机</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" title="切换主题">☀️</button>
+    <div class="container">
+        <header class="header">
+            <h1>📷 水印相机</h1>
+            <p class="subtitle">上传图片，添加水印</p>
+        </header>
+
+        <main class="main">
+            <div class="upload-section" id="uploadSection">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">点击或拖拽上传图片</p>
+                    <p class="upload-hint">支持 JPG / PNG / WEBP格式图片</p>
+                    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+                </div>
+            </div>
+
+            <div class="editor-section" id="editorSection" style="display:none;">
+                <div class="editor-layout">
+                    <div class="preview-panel">
+                        <div class="preview-wrapper">
+                            <canvas id="previewCanvas"></canvas>
+                        </div>
+                        <p class="preview-hint">预览效果</p>
+                    </div>
+
+                    <div class="control-panel">
+                        <h3>水印设置</h3>
+
+                        <div class="control-group">
+                            <label class="control-label">
+                                <span class="label-icon">📅</span> 日期
+                            </label>
+                            <input type="date" id="dateInput" class="control-input">
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">
+                                <span class="label-icon">⏰</span> 时间
+                            </label>
+                            <input type="time" id="timeInput" class="control-input">
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">
+                                <span class="label-icon">📍</span> 地点
+                            </label>
+                            <input type="text" id="locationInput" class="control-input" placeholder="输入拍摄地点" maxlength="80">
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">
+                                <span class="label-icon">🔍</span> 水印大小
+                            </label>
+                            <div class="size-slider-row">
+                                <input type="range" id="sizeSlider" class="size-slider" min="50" max="150" value="100" step="5">
+                                <span class="size-value" id="sizeValue">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="control-divider"></div>
+
+                        <div class="control-group control-group-row">
+                            <span class="control-label">
+                                <span class="label-icon">🎨</span> 水印颜色
+                            </span>
+                            <button class="color-btn active" data-color="white">
+                                <span class="color-swatch white"></span> 白色
+                            </button>
+                            <button class="color-btn" data-color="black">
+                                <span class="color-swatch black"></span> 黑色
+                            </button>
+                        </div>
+
+                        <div class="control-actions">
+                            <button class="btn btn-outline" id="toggleLogoBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                                <span id="toggleLogoText">隐藏 Logo</span>
+                            </button>
+                            <button class="btn btn-outline" id="reuploadBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                                重新上传
+                            </button>
+                            <button class="btn btn-outline" id="downloadBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                下载图片
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
