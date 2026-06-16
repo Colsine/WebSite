@@ -12,9 +12,10 @@ const downloadBtn = document.getElementById('downloadBtn');
 const reuploadBtn = document.getElementById('reuploadBtn');
 const toggleLogoBtn = document.getElementById('toggleLogoBtn');
 
-const TARGET_WIDTH = 1279;
-const TARGET_HEIGHT = 1706;
-const ASPECT_RATIO = TARGET_WIDTH / TARGET_HEIGHT;
+let TARGET_WIDTH = 1279;
+let TARGET_HEIGHT = 1706;
+let ASPECT_RATIO = TARGET_WIDTH / TARGET_HEIGHT;
+let currentOrientation = 'portrait';
 
 let currentImage = null;
 let watermarkColor = 'white';
@@ -138,6 +139,28 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.add('active');
         watermarkColor = btn.dataset.color;
         renderPreview();
+    });
+});
+
+function setOrientation(orient) {
+    currentOrientation = orient;
+    if (orient === 'landscape') {
+        TARGET_WIDTH = 1706;
+        TARGET_HEIGHT = 1279;
+    } else {
+        TARGET_WIDTH = 1279;
+        TARGET_HEIGHT = 1706;
+    }
+    ASPECT_RATIO = TARGET_WIDTH / TARGET_HEIGHT;
+    resetView();
+    if (currentImage) renderPreview();
+}
+
+document.querySelectorAll('.orient-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.orient-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        setOrientation(btn.dataset.orient);
     });
 });
 
@@ -420,7 +443,7 @@ function drawWatermark(ctx, width, height) {
         let nonWrapWidth = 0;
         for (const part of topRowParts) {
             if (part.type === 'text' && !part.wrap) {
-                ctx.font = `${part.fontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+                ctx.font = `${part.fontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
                 nonWrapWidth += ctx.measureText(part.value).width;
             } else if (part.type === 'pin') {
                 nonWrapWidth += pinWidth + 6 * s;
@@ -431,7 +454,7 @@ function drawWatermark(ctx, width, height) {
 
         const wrapPart = topRowParts.find(p => p.type === 'text' && p.wrap);
         if (wrapPart) {
-            ctx.font = `${wrapPart.fontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+            ctx.font = `${wrapPart.fontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
             const wrapMaxWidth = maxLineWidth - nonWrapWidth;
             const wrappedLines = wrapText(ctx, wrapPart.value, Math.max(wrapMaxWidth, 50 * s));
 
@@ -469,7 +492,7 @@ function drawWatermark(ctx, width, height) {
 
     for (const line of allLines) {
         if (line.type === 'timeLine') {
-            ctx.font = `${timeFontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+            ctx.font = `${timeFontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
             ctx.fillStyle = textColor;
             ctx.textAlign = 'center';
             ctx.fillText(line.text, centerX, currentY);
@@ -479,7 +502,7 @@ function drawWatermark(ctx, width, height) {
             let rowWidth = 0;
             for (const part of line.parts) {
                 if (part.type === 'text' && !part.wrap) {
-                    ctx.font = `${part.fontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+                    ctx.font = `${part.fontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
                     rowWidth += ctx.measureText(part.value).width;
                 } else if (part.type === 'pin') {
                     rowWidth += pinWidth + 6 * s;
@@ -488,7 +511,7 @@ function drawWatermark(ctx, width, height) {
                 }
             }
             if (line.wrapText) {
-                ctx.font = `${locationFontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+                ctx.font = `${locationFontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
                 rowWidth += ctx.measureText(line.wrapText).width;
             }
 
@@ -497,14 +520,14 @@ function drawWatermark(ctx, width, height) {
 
             for (const part of line.parts) {
                 if (part.type === 'text' && !part.wrap) {
-                    ctx.font = `${part.fontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+                    ctx.font = `${part.fontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
                     ctx.fillStyle = textColor;
                     ctx.textAlign = 'left';
                     const textOffsetY = (rowHeight - part.fontSize) / 2;
                     ctx.fillText(part.value, drawX, currentY + textOffsetY);
                     drawX += ctx.measureText(part.value).width;
                 } else if (part.type === 'pin') {
-                    const pinOffsetY = (rowHeight + locationFontSize) / 2 - pinHeight - 9 * s;
+                    const pinOffsetY = (rowHeight + locationFontSize) / 2 - pinHeight - 2 * s;
                     if (pinImg.complete) ctx.drawImage(pinImg, drawX, currentY + pinOffsetY, pinWidth, pinHeight);
                     drawX += pinWidth + 6 * s;
                 } else if (part.type === 'gap') {
@@ -512,7 +535,7 @@ function drawWatermark(ctx, width, height) {
                 }
             }
             if (line.wrapText) {
-                ctx.font = `${locationFontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+                ctx.font = `${locationFontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
                 ctx.fillStyle = textColor;
                 ctx.textAlign = 'left';
                 const textOffsetY = (rowHeight - locationFontSize) / 2;
@@ -521,7 +544,7 @@ function drawWatermark(ctx, width, height) {
             currentY += rowHeight + lineSpacing;
 
         } else if (line.type === 'locationLine') {
-            ctx.font = `${locationFontSize}px "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
+            ctx.font = `${locationFontSize}px "Heiti SC", "SimHei", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif`;
             ctx.fillStyle = textColor;
             ctx.textAlign = 'center';
             ctx.fillText(line.text, centerX, currentY);

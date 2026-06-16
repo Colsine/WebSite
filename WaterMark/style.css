@@ -161,21 +161,22 @@ body {
 }
 .control-panel {
     flex: 1;
-    min-width: 280px;
+    min-width: 230px;
+    max-width: 470px;
     background: var(--surface);
     border-radius: 12px;
-    padding: 28px 24px;
+    padding: 24px 18px;
 }
 
 .control-panel h3 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .control-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .control-label {
@@ -257,7 +258,7 @@ body {
 .control-divider {
     height: 1px;
     background: var(--border);
-    margin: 24px 0;
+    margin: 16px 0;
 }
 .control-group-row {
     display: flex;
@@ -267,6 +268,13 @@ body {
 
 .control-group-row .control-label {
     margin-bottom: 0;
+}
+
+.row-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+    flex-shrink: 0;
 }
 
 .color-btn {
@@ -308,17 +316,40 @@ body {
 .color-swatch.black {
     background: #111;
 }
+.orient-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--surface2);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.orient-btn:hover {
+    background: var(--border);
+}
+
+.orient-btn.active {
+    border-color: var(--accent);
+    color: var(--text);
+}
 .control-actions {
-    margin-top: 28px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 6px;
 }
 
 .control-actions .btn {
     flex: 1;
-    padding: 10px 6px;
-    font-size: 12px;
+    padding: 8px 4px;
+    font-size: 11px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

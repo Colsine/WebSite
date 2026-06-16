@@ -37,7 +37,6 @@
                         <div class="preview-wrapper">
                             <canvas id="previewCanvas"></canvas>
                         </div>
-                        <p class="preview-hint">预览效果</p>
                     </div>
 
                     <div class="control-panel">
@@ -78,13 +77,23 @@
 
                         <div class="control-group control-group-row">
                             <span class="control-label">
-                                <span class="label-icon">🎨</span> 水印颜色
+                                <span class="label-icon">🎨</span> 颜色
                             </span>
                             <button class="color-btn active" data-color="white">
-                                <span class="color-swatch white"></span> 白色
+                                <span class="color-swatch white"></span> 白
                             </button>
                             <button class="color-btn" data-color="black">
-                                <span class="color-swatch black"></span> 黑色
+                                <span class="color-swatch black"></span> 黑
+                            </button>
+                            <span class="row-sep"></span>
+                            <span class="control-label">
+                                <span class="label-icon">📐</span> 方向
+                            </span>
+                            <button class="orient-btn active" data-orient="portrait">
+                                <svg width="12" height="14" viewBox="0 0 12 14"><rect x="1" y="1" width="10" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> 竖
+                            </button>
+                            <button class="orient-btn" data-orient="landscape">
+                                <svg width="14" height="12" viewBox="0 0 14 12"><rect x="1" y="1" width="12" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> 横
                             </button>
                         </div>
 
